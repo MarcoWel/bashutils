@@ -42,6 +42,20 @@ else
     read host
 fi
 
+if ping -c 1 $host &> /dev/null
+then
+  # Host is reachable, all good.
+else
+    if ping -c 1 8.8.8.8 &> /dev/null
+    then
+        echo "ERROR: Host not reachable! Internet seems okay. Please check network."
+        exit 1
+    else
+        echo "ERROR: Host and internet not reachable! Please check internet connection."    
+        exit 2
+    fi
+fi
+
 if [-z $user]
 then
     echo    "User       > "$user
