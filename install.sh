@@ -31,14 +31,16 @@ if [ ! -f .env ]
 then
     echo
     echo "Creating empty .env file"
-    cat > .env
+    
+    cat <<EOF > .env
 host=
 user=
 password=
 resolution=
 bitdepth=
 logfile=
-<EOF>
+EOF
+
 fi
 
 echo

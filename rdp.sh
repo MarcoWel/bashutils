@@ -8,8 +8,8 @@
 host=
 user=
 password=
-resolution=1920x1080
-bitdepth=16
+resolution="1920x1080"
+bitdepth="16"
 logfile=~/rdplog.txt
 
 # Overwrite defaults from .env file
@@ -29,6 +29,7 @@ do
     esac
 done
 
+echo
 echo "******************************************"
 echo "**            PI RDP CONNECT            **"
 echo "******************************************"
@@ -45,10 +46,11 @@ fi
 if ping -c 1 $host &> /dev/null
 then
     echo "Host $host reachable."
+    echo
 else
     if ping -c 1 8.8.8.8 &> /dev/null
     then
-        echo "ERROR: Host $host not reachable! Internet seems okay. Please check network."
+        echo "ERROR: Host $host not reachable! Internet seems okay. Please check host address and network."
         exit 1
     else
         echo "ERROR: Host $host and internet not reachable! Please check internet connection."    
