@@ -77,7 +77,7 @@ echo
 echo
 echo "-- INITIATING RDP SESSION FOR $user --" | ts '[%F %T]' | tee -a $logfile
 
-xfreerdp /size:$resolution /bpp:$bitdepth /f /u:$user /p:$password /v:$host \
+xfreerdp /size:"$resolution" /bpp:"$bitdepth" /f /u:"$user" /p:"$password" /v:"$host" \
          /sound:sys:alsa,latency:100 /gdi:hw /network:broadband /cert-ignore \
          -clipboard +gfx-thin-client +auto-reconnect +fonts +multitouch \
          2>&1 | ts '[%F %T]' | tee -a $logfile
