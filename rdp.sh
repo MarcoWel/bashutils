@@ -76,6 +76,7 @@ fi
 echo
 echo
 echo "-- INITIATING RDP SESSION FOR $user --" | ts '[%F %T]' | tee -a $logfile
+set -o pipefail
 
 xfreerdp /size:"$resolution" /bpp:"$bitdepth" /f /u:"$user" /p:"$password" /v:"$host" \
          /sound:sys:alsa,latency:100 /gdi:hw /network:broadband /cert-ignore \
