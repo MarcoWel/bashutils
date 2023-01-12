@@ -34,12 +34,12 @@ echo "**            PI RDP CONNECT            **"
 echo "******************************************"
 echo
 
-if [-z $host]
+if [ -z "$host" ]
 then
-    echo    "Host       > "$host
-else
     echo -n "Enter Host > "
     read host
+else
+    echo    "Host       > "$host
 fi
 
 if ping -c 1 $host &> /dev/null
@@ -56,20 +56,20 @@ else
     fi
 fi
 
-if [-z $user]
+if [ -z "$user" ]
 then
-    echo    "User       > "$user
-else
     echo -n "Enter User > "
-    read user
+    read host
+else
+    echo    "User       > "$user
 fi
 
-if [-z $user]
+if [ -z "$password" ]
 then
-    echo    "Password   > ****"
-else
     echo -n "Password   > "
     read -s password
+else
+    echo    "Password   > ****"
 fi
 
 echo
