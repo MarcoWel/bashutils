@@ -40,13 +40,12 @@ then
     echo -n "Enter Host > "
     read host
 else
-    echo    "Host       > "$host
+    echo -n "Host       > "$host
 fi
 
 if ping -c 1 $host &> /dev/null
 then
-    echo "Host $host reachable."
-    echo
+    echo " ... reachable"
 else
     if ping -c 1 8.8.8.8 &> /dev/null
     then
