@@ -87,6 +87,7 @@ freerdp_exitcode=$?
 echo "-- ENDED RDP SESSION FOR $user --" | ts '[%F %T]' | tee -a $logfile
 
 if [ $freerdp_exitcode -gt 2 ]
+then
     # Wait for user input
     read -s
 fi
