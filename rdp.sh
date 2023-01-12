@@ -82,5 +82,11 @@ xfreerdp /size:$resolution /bpp:$bitdepth /f /u:$user /p:$password /v:$host \
          -clipboard +gfx-thin-client +auto-reconnect +fonts +multitouch \
          2>&1 | ts '[%F %T]' | tee -a $logfile
 
+freerdp_exitcode=$?
+
 echo "-- ENDED RDP SESSION FOR $user --" | ts '[%F %T]' | tee -a $logfile
-read -s
+
+if [ $freerdp_exitcode -gt 2 ]
+    # Wait for user input
+    read -s
+fi
