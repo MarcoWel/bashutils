@@ -81,7 +81,7 @@ set -o pipefail
 xfreerdp /size:"$resolution" /bpp:"$bitdepth" /f /u:"$user" /p:"$password" /v:"$host" \
          /sound:sys:alsa,latency:100 /gdi:hw /network:broadband /cert-ignore \
          -clipboard +gfx-thin-client +auto-reconnect +fonts +multitouch \
-         2>&1 | ts '[%F %T]' | tee -a $logfile
+         2>&1 | grep -v 'recursive lock from' | ts '[%F %T]' | tee -a $logfile
 
 freerdp_exitcode=$?
 
