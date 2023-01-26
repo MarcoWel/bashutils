@@ -93,12 +93,9 @@ echo
 curl -s "https://raw.githubusercontent.com/MarcoWel/bashutils/master/rdp.sh" -o "$HOME/bashutils/rdp.sh"
 chmod u+x "$HOME/bashutils/rdp.sh"
 
-if [ ! -f "$HOME/bashutils/.env" ]
-then
-    echo
-    echo "Creating default .env file"
-    
-    cat <<EOF > "$HOME/bashutils/.env"
+echo
+echo "Creating .env file"
+cat <<EOF > "$HOME/bashutils/.env"
 host=$host
 user=$user
 password=$password
@@ -107,11 +104,8 @@ bitdepth=$bitdepth
 logfile=$logfile
 EOF
 
-fi
-
 echo
 echo "Creating desktop shortcuts..."
-echo
 cat <<EOF > "$HOME/Desktop/Connect.desktop"
 [Desktop Entry]
 Type=Application
@@ -136,4 +130,5 @@ Icon=system-users-symbolic
 EOF
 chmod u+x "$HOME/Desktop/Connect with User.desktop"
 
+echo
 echo "Done!"
