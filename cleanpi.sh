@@ -20,7 +20,7 @@ df -h
 echo -e "\n ${Bold}${Blue}   packages to remove (ignore warnings) ${Black}${Normal}"
 sudo apt remove --purge libreoffice* -y
 sudo apt remove --purge wolfram-engine -y
-sudo apt remove -—purge chromium-browser -y
+#sudo apt remove --purge chromium-browser -y
 sudo apt remove --purge scratch2 -y
 sudo apt remove --purge minecraft-pi  -y
 sudo apt remove --purge sonic-pi  -y
