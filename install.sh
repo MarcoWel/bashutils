@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Usage:
-# wget "https://raw.githubusercontent.com/MarcoWel/bashutils/master/install.sh" -O - | bash
+# wget --no-cache "https://raw.githubusercontent.com/MarcoWel/bashutils/master/install.sh" -O - | bash
 
 echo "INSTALLING BASHTOOLS"
 echo
@@ -34,7 +34,7 @@ do
     esac
 done
 
-read -p "Should we remove unneccessary packages? y/N " res
+read -n1 -p "Should we remove unneccessary packages? y/N " res
 if [ $res == "y" ]
 then
     echo "Removing packages..."
