@@ -20,7 +20,6 @@ df -h
 echo -e "\n ${Bold}${Blue}   packages to remove (ignore warnings) ${Black}${Normal}"
 sudo apt remove --purge libreoffice* -y
 sudo apt remove --purge wolfram-engine -y
-#sudo apt remove --purge chromium-browser -y
 sudo apt remove --purge scratch -y
 sudo apt remove --purge minecraft-pi  -y
 sudo apt remove --purge sonic-pi  -y
@@ -28,7 +27,10 @@ sudo apt remove --purge dillo -y
 sudo apt remove --purge gpicview -y
 sudo apt remove --purge nodered -y
 sudo apt remove --purge openjdk-* -y
-sudo apt remove --purge libx11-* -y
+
+# Headless only:
+#sudo apt remove --purge chromium-browser -y
+#sudo apt remove --purge libx11-* -y
 #sudo apt remove --purge x11-* -y
 
 sudo apt autoremove -y
