@@ -13,13 +13,16 @@ bitdepth="16"
 logfile=~/rdplog.txt
 
 # Overwrite defaults from .env file
-source .env
+if [ -f ".env" ]
+then
+    source .env
+fi
 
 # Read commandline flags:
 #   -h HOST
 #   -u USER
 #   -l LOGFILE
-while getopts h:u:l: flag
+while getopts h:u:p:l: flag
 do
     case "${flag}" in
         h) host=${OPTARG};;

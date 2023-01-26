@@ -15,13 +15,16 @@ bitdepth=
 logfile=
 
 # Overwrite defaults from .env file
-source .env
+if [ -f ".env" ]
+then
+    source .env
+fi
 
 # Read commandline flags:
 #   -h HOST
 #   -u USER
 #   -l LOGFILE
-while getopts h:u:l: flag
+while getopts h:u:p:l: flag
 do
     case "${flag}" in
         h) host=${OPTARG};;
@@ -32,7 +35,7 @@ do
 done
 
 read -n1 -p "Should we remove unneccessary packages? y/N " res
-if [[ $res == "y" ]]
+if [ $res == "y" ]
 then
     echo "Removing packages..."
     echo
