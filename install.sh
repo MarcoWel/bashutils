@@ -33,8 +33,20 @@ if [ $res == "y" ]
 then
     echo "Removing packages..."
     echo
-    ./cleanpi.sh
+    wget https://raw.githubusercontent.com/MarcoWel/bashutils/master/cleanpi.sh -O - | sh
     echo
+fi
+
+uname -a
+echo
+read -n1 -p "Should we perform a kernel update now (rpi-update)? y/N " res
+if [ $res == "y" ]
+then
+    echo "Performing kernel update..."
+    echo
+    sudo rpi-update
+    echo
+    uname -a
 fi
 
 echo "Note: To upgrade to a specific OS release:"
@@ -86,18 +98,18 @@ Type=Application
 Name=Connect
 Type=Application
 Path=/home/pi
-Exec=bash rdp.sh
+Exec=bash ~/bashutils/rdp.sh
 Terminal=true
 Icon=system-users-symbolic
 EOF
 
-cat <<EOF > ~/Desktop/Connect User.desktop
+cat <<EOF > ~/Desktop/Connect with User.desktop
 [Desktop Entry]
 Type=Application
-Name=Connect
+Name=Connect with User
 Type=Application
 Path=/home/pi
-Exec=bash rdp.sh
+Exec=bash ~/bashutils/rdp.sh -u
 Terminal=true
 Icon=system-users-symbolic
 EOF
