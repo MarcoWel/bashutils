@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Usage:
-# curl -s "https://raw.githubusercontent.com/MarcoWel/bashutils/master/install.sh" | bash -s -- -h "MYHOST" -u "MYUSER"
+# bash <(curl -s "https://raw.githubusercontent.com/MarcoWel/bashutils/master/install.sh") -h "MYHOST" -u "MYUSER"
 
 echo "INSTALLING BASHTOOLS"
 echo
@@ -15,7 +15,7 @@ bitdepth=
 logfile=
 
 # Overwrite defaults from .env file
-if [ -f ".env" ]
+if [[ -f ".env" ]]
 then
     source .env
 fi
@@ -40,7 +40,7 @@ echo "User: $user"
 echo
 read -p "Should we remove unneccessary packages? y/N " res
 echo
-if [ $res = "y" ]
+if [[ $res == "y" ]]
 then
     echo "Removing packages..."
     echo
@@ -53,7 +53,7 @@ uname -a
 echo
 read -p "Should we perform a kernel update now (rpi-update)? y/N " res
 echo
-if [ $res = "y" ]
+if [[ $res == "y" ]]
 then
     echo "Performing kernel update..."
     echo
@@ -62,6 +62,7 @@ then
     uname -a
 fi
 
+echo
 echo "Note: To upgrade to a specific OS release:"
 echo "      - sudo nano /etc/apt/sources.list"
 echo "      - Modify version name (replace (e.g. strech with bullseye)"
@@ -69,7 +70,7 @@ echo "      - Save and close with STRG+X"
 echo
 read -p "Should we perform a system update now (apt full-upgrade)? y/N " res
 echo
-if [ $res = "y" ]
+if [[ $res == "y" ]]
 then
     echo "Performing system update..."
     echo
@@ -86,16 +87,21 @@ echo "Installing packages..."
 echo
 sudo apt install raspberrypi-ui-mods freerdp2-x11 moreutils
 
-if [ ! -d "$HOME/bashutils" ]
+echo
+echo "Downloading repo..."
+echo
+if [[ ! -d "$HOME/bashutils" ]]
 then
-    mkdir "$HOME/bashutils"
+    git clone "https://github.com/MarcoWel/bashutils.git" "$HOME/bashutils"
+    #mkdir "$HOME/bashutils"
+else
+    cd "$HOME/bashutils"
+    git fetch origin master
+    git reset --hard origin/master
 fi
 
-echo
-echo "Downloading rdp.sh..."
-echo
-curl -s "https://raw.githubusercontent.com/MarcoWel/bashutils/master/rdp.sh" -o "$HOME/bashutils/rdp.sh"
-chmod u+x "$HOME/bashutils/rdp.sh"
+#curl -s "https://raw.githubusercontent.com/MarcoWel/bashutils/master/rdp.sh" -o "$HOME/bashutils/rdp.sh"
+#chmod u+x "$HOME/bashutils/rdp.sh"
 
 echo
 echo "Creating .env file..."
@@ -107,7 +113,7 @@ resolution=$resolution
 bitdepth=$bitdepth
 logfile=$logfile
 EOF
-cat "$HOME/bashutils/.env"
+#cat "$HOME/bashutils/.env"
 
 echo
 echo "Creating desktop shortcuts..."
