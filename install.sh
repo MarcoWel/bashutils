@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Usage:
-# wget --no-cache "https://raw.githubusercontent.com/MarcoWel/bashutils/master/install.sh" -O - | bash
+# curl -s "https://raw.githubusercontent.com/MarcoWel/bashutils/master/install.sh" -O - | bash -s -h "MYHOST" -u "MYUSER"
 
 echo "INSTALLING BASHTOOLS"
 echo
@@ -34,18 +34,21 @@ do
     esac
 done
 
-#read -n1 -p "Should we remove unneccessary packages? y/N " res
+read -n1 -p "Should we remove unneccessary packages? y/N " res
+echo
 if [ $res == "y" ]
 then
     echo "Removing packages..."
     echo
-    #wget "https://raw.githubusercontent.com/MarcoWel/bashutils/master/cleanpi.sh" -O - | bash
+    curl -s "https://raw.githubusercontent.com/MarcoWel/bashutils/master/cleanpi.sh" | bash -s
     echo
 fi
 
+echo
 uname -a
 echo
 read -n1 -p "Should we perform a kernel update now (rpi-update)? y/N " res
+echo
 if [ $res == "y" ]
 then
     echo "Performing kernel update..."
@@ -61,6 +64,7 @@ echo "      - Modify version name (replace (e.g. strech with bullseye)"
 echo "      - Save and close with STRG+X"
 echo
 read -n1 -p "Should we perform a system update now (apt full-upgrade)? y/N " res
+echo
 if [ $res == "y" ]
 then
     echo "Performing system update..."
@@ -74,24 +78,27 @@ then
 fi
 
 echo
-echo "Installing prerequesites..."
+echo "Installing packages..."
 echo
 sudo apt install raspberrypi-ui-mods freerdp2-x11 moreutils
 
-mkdir "~/bashutils"
+if [ ! -d "$HOME/bashutils" ]
+then
+    mkdir "$HOME/bashutils"
+fi
 
 echo
 echo "Downloading rdp.sh..."
 echo
-wget "https://raw.githubusercontent.com/MarcoWel/bashutils/master/rdp.sh" -O "~/bashutils/rdp.sh"
-chmod u+x "~/bashutils/rdp.sh"
+curl -s "https://raw.githubusercontent.com/MarcoWel/bashutils/master/rdp.sh" -o "$HOME/bashutils/rdp.sh"
+chmod u+x "$HOME/bashutils/rdp.sh"
 
-if [ ! -f "~/bashutils/.env" ]
+if [ ! -f "$HOME/bashutils/.env" ]
 then
     echo
     echo "Creating default .env file"
     
-    cat <<EOF > .env
+    cat <<EOF > "$HOME/bashutils/.env"
 host=$host
 user=$user
 password=$password
@@ -105,29 +112,29 @@ fi
 echo
 echo "Creating desktop shortcuts"
 echo
-cat <<EOF > "~/Desktop/Connect.desktop"
+cat <<EOF > "$HOME/Desktop/Connect.desktop"
 [Desktop Entry]
 Type=Application
 Name=Connect
 Type=Application
-Path=~/bashutils/
+Path=~/bashutils
 Exec=bash ~/bashutils/rdp.sh
 Terminal=true
 Icon=system-users-symbolic
 EOF
-chmod u+x "~/Desktop/Connect.desktop"
+chmod u+x "$HOME/Desktop/Connect.desktop"
 
-cat <<EOF > "~/Desktop/Connect with User.desktop"
+cat <<EOF > "$HOME/Desktop/Connect with User.desktop"
 [Desktop Entry]
 Type=Application
 Name=Connect with User
 Type=Application
-Path=~/bashutils/
+Path=~/bashutils
 Exec=bash ~/bashutils/rdp.sh -u
 Terminal=true
 Icon=system-users-symbolic
 EOF
-chmod u+x "~/Desktop/Connect with User.desktop"
+chmod u+x "$HOME/Desktop/Connect with User.desktop"
 
 echo
 echo "Done!"
