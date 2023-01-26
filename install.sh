@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Usage:
-# curl -s "https://raw.githubusercontent.com/MarcoWel/bashutils/master/install.sh" | bash -s -h "MYHOST" -u "MYUSER"
+# curl -s "https://raw.githubusercontent.com/MarcoWel/bashutils/master/install.sh" | bash -s -- -h "MYHOST" -u "MYUSER"
 
 echo "INSTALLING BASHTOOLS"
 echo
@@ -40,7 +40,7 @@ if [ $res = "y" ]
 then
     echo "Removing packages..."
     echo
-    curl -s "https://raw.githubusercontent.com/MarcoWel/bashutils/master/cleanpi.sh" | bash -s
+    curl -s "https://raw.githubusercontent.com/MarcoWel/bashutils/master/cleanpi.sh" | bash
     echo
 fi
 
