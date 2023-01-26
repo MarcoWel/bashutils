@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Usage:
-# wget https://raw.githubusercontent.com/MarcoWel/bashutils/master/install.sh -O - | sh
+# wget https://raw.githubusercontent.com/MarcoWel/bashutils/master/install.sh -O - | bash
 
 echo "INSTALLING BASHTOOLS"
 echo
@@ -31,18 +31,18 @@ do
     esac
 done
 
-read -p "Should we remove unneccessary packages? y/N " -n1 res
+read -n1 -p "Should we remove unneccessary packages? y/N " res
 if [ $res == "y" ]
 then
     echo "Removing packages..."
     echo
-    wget https://raw.githubusercontent.com/MarcoWel/bashutils/master/cleanpi.sh -O - | sh
+    wget https://raw.githubusercontent.com/MarcoWel/bashutils/master/cleanpi.sh -O - | bash
     echo
 fi
 
 uname -a
 echo
-read -p "Should we perform a kernel update now (rpi-update)? y/N " -n1 res
+read -n1 -p "Should we perform a kernel update now (rpi-update)? y/N " res
 if [ $res == "y" ]
 then
     echo "Performing kernel update..."
@@ -57,7 +57,7 @@ echo "      - sudo nano /etc/apt/sources.list"
 echo "      - Modify version name (replace (e.g. strech with bullseye)"
 echo "      - Save and close with STRG+X"
 echo
-read -p "Should we perform a system update now (apt full-upgrade)? y/N " -n1 res
+read -n1 -p "Should we perform a system update now (apt full-upgrade)? y/N " res
 if [ $res == "y" ]
 then
     echo "Performing system update..."
