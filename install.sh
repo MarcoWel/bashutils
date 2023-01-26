@@ -32,7 +32,7 @@ do
 done
 
 read -n1 -p "Should we remove unneccessary packages? y/N " res
-if [ $res == "y" ]
+if [[ $res == "y" ]]
 then
     echo "Removing packages..."
     echo
