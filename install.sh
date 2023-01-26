@@ -61,58 +61,6 @@ resolution=$resolution
 bitdepth=$bitdepth
 logfile=$logfile
 EOF
-#cat "$HOME/bashutils/.env"
-
-echo
-read -p "Should we remove unneccessary packages? y/N " res
-echo
-if [[ $res == "y" ]]
-then
-    echo "Removing packages..."
-    echo
-    $HOME/bashutils/cleanpi.sh
-    echo
-fi
-
-echo
-uname -a
-echo
-read -p "Should we perform a kernel update now (rpi-update)? y/N " res
-echo
-if [[ $res == "y" ]]
-then
-    echo "Performing kernel update..."
-    echo
-    sudo rpi-update
-    echo
-    uname -a
-fi
-
-echo
-echo "Note: To upgrade to a specific OS release:"
-echo "      - sudo nano /etc/apt/sources.list"
-echo "      - Modify version name (replace (e.g. strech with bullseye)"
-echo "      - Save and close with STRG+X"
-echo
-read -p "Should we perform a system update now (apt full-upgrade)? y/N " res
-echo
-if [[ $res == "y" ]]
-then
-    echo "Performing system update..."
-    echo
-    sudo apt update
-    sudo apt -y full-upgrade
-    sudo apt -y autoremove
-    sudo apt -y autoclean
-    echo
-    lsb_release -a
-fi
-
-echo
-echo "Installing packages..."
-echo
-sudo apt install raspberrypi-ui-mods freerdp2-x11 moreutils
-
 
 echo
 echo "Creating desktop shortcuts..."
@@ -141,4 +89,61 @@ EOF
 chmod u+x "$HOME/Desktop/Connect with User.desktop"
 
 echo
-echo "Done!"
+echo "Installing packages..."
+echo
+sudo apt install raspberrypi-ui-mods freerdp2-x11 moreutils
+
+echo
+echo "Bashutils installation is complete!"
+echo
+read -p "Would you like to perform a system update as well? y/N " res
+if [[ $res == "y" ]]
+then
+    echo
+    read -p "Remove unneccessary packages to free disk space? y/N " res
+    if [[ $res == "y" ]]
+    then
+        echo "Removing packages..."
+        echo
+        $HOME/bashutils/cleanpi.sh
+        echo
+    fi
+
+    echo
+    echo "Current kernel version:"
+    uname -a
+    echo
+    read -p "Perform a kernel update now (rpi-update)? y/N " res
+    if [[ $res == "y" ]]
+    then
+        echo "Performing kernel update..."
+        echo
+        sudo rpi-update
+        echo
+        uname -a
+    fi
+
+    echo
+    echo "Current OS version:"
+    lsb_release -a
+    echo
+    echo "Note: To upgrade to a specific OS release:"
+    echo "      - Check  /etc/apt/sources.list  and files in  /etc/apt/sources.list.d/"
+    echo "      - Open in editor (e.g. sudo nano) and replace OS version (e.g. strech with bullseye)"
+    echo
+    read -p "Perform a system update now (apt update && apt full-upgrade)? y/N " res
+    if [[ $res == "y" ]]
+    then
+        echo "Performing system update..."
+        echo
+        sudo apt update
+        sudo apt -y full-upgrade
+        sudo apt -y autoremove
+        sudo apt -y autoclean
+        echo
+        lsb_release -a
+    fi
+
+    echo
+    echo "Done!"
+fi
