@@ -94,13 +94,14 @@ echo
 sudo apt install raspberrypi-ui-mods freerdp2-x11 moreutils
 
 echo
-echo "Bashutils installation is complete!"
+echo
+echo "*** Bashutils installation is complete! ***"
 echo
 read -p "Would you like to perform a system update as well? y/N " res
 if [[ $res == "y" ]]
 then
     echo
-    read -p "Remove unneccessary packages to free disk space? y/N " res
+    read -p ">> Remove unneccessary packages to free disk space? y/N " res
     if [[ $res == "y" ]]
     then
         echo "Removing packages..."
@@ -113,7 +114,7 @@ then
     echo "Current kernel version:"
     uname -a
     echo
-    read -p "Perform a kernel update now (rpi-update)? y/N " res
+    read -p ">> Perform a kernel update now (rpi-update)? y/N " res
     if [[ $res == "y" ]]
     then
         echo "Performing kernel update..."
@@ -131,7 +132,7 @@ then
     echo "      - Check  /etc/apt/sources.list  and files in  /etc/apt/sources.list.d/"
     echo "      - Open in editor (e.g. sudo nano) and replace OS version (e.g. strech with bullseye)"
     echo
-    read -p "Perform a system update now (apt update && apt full-upgrade)? y/N " res
+    read -p ">> Perform a system update now (apt update && apt full-upgrade)? y/N " res
     if [[ $res == "y" ]]
     then
         echo "Performing system update..."

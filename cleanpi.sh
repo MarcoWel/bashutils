@@ -21,17 +21,14 @@ echo -e "\n ${Bold}${Blue}   packages to remove (ignore warnings) ${Black}${Norm
 sudo apt remove --purge libreoffice* -y
 sudo apt remove --purge wolfram-engine -y
 #sudo apt remove --purge chromium-browser -y
-sudo apt remove --purge scratch2 -y
+sudo apt remove --purge scratch -y
 sudo apt remove --purge minecraft-pi  -y
 sudo apt remove --purge sonic-pi  -y
 sudo apt remove --purge dillo -y
 sudo apt remove --purge gpicview -y
-sudo apt remove --purge penguinspuzzle -y
-sudo apt remove --purge oracle-java8-jdk -y
-sudo apt remove --purge openjdk-7-jre -y
-sudo apt remove --purge oracle-java7-jdk -y 
-sudo apt remove --purge openjdk-8-jre -y
-sudo apt remove --purge libx11-.* -y
+sudo apt remove --purge nodered -y
+sudo apt remove --purge openjdk-* -y
+sudo apt remove --purge libx11-* -y
 #sudo apt remove --purge x11-* -y
 
 sudo apt autoremove -y
