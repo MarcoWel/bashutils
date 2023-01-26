@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Usage:
-# curl -s "https://raw.githubusercontent.com/MarcoWel/bashutils/master/install.sh" -O - | bash -s -h "MYHOST" -u "MYUSER"
+# curl -s "https://raw.githubusercontent.com/MarcoWel/bashutils/master/install.sh" | bash -s -h "MYHOST" -u "MYUSER"
 
 echo "INSTALLING BASHTOOLS"
 echo
@@ -36,7 +36,7 @@ done
 
 read -n1 -p "Should we remove unneccessary packages? y/N " res
 echo
-if [ $res == "y" ]
+if [ $res = "y" ]
 then
     echo "Removing packages..."
     echo
@@ -49,7 +49,7 @@ uname -a
 echo
 read -n1 -p "Should we perform a kernel update now (rpi-update)? y/N " res
 echo
-if [ $res == "y" ]
+if [ $res = "y" ]
 then
     echo "Performing kernel update..."
     echo
@@ -65,7 +65,7 @@ echo "      - Save and close with STRG+X"
 echo
 read -n1 -p "Should we perform a system update now (apt full-upgrade)? y/N " res
 echo
-if [ $res == "y" ]
+if [ $res = "y" ]
 then
     echo "Performing system update..."
     echo
@@ -110,7 +110,7 @@ EOF
 fi
 
 echo
-echo "Creating desktop shortcuts"
+echo "Creating desktop shortcuts..."
 echo
 cat <<EOF > "$HOME/Desktop/Connect.desktop"
 [Desktop Entry]
@@ -136,5 +136,4 @@ Icon=system-users-symbolic
 EOF
 chmod u+x "$HOME/Desktop/Connect with User.desktop"
 
-echo
 echo "Done!"
