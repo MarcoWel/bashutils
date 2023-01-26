@@ -34,6 +34,10 @@ do
     esac
 done
 
+echo "Host: $host"
+echo "User: $user"
+
+echo
 read -n1 -p "Should we remove unneccessary packages? y/N " res
 echo
 if [ $res = "y" ]
@@ -94,7 +98,7 @@ curl -s "https://raw.githubusercontent.com/MarcoWel/bashutils/master/rdp.sh" -o 
 chmod u+x "$HOME/bashutils/rdp.sh"
 
 echo
-echo "Creating .env file"
+echo "Creating .env file..."
 cat <<EOF > "$HOME/bashutils/.env"
 host=$host
 user=$user
@@ -103,6 +107,7 @@ resolution=$resolution
 bitdepth=$bitdepth
 logfile=$logfile
 EOF
+cat "$HOME/bashutils/.env"
 
 echo
 echo "Creating desktop shortcuts..."
