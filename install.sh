@@ -6,14 +6,40 @@
 echo "INSTALLING BASHTOOLS"
 echo
 
+# Set defaults
+host=
+user=
+password=
+resolution=
+bitdepth=
+logfile=
 
+# Overwrite defaults from .env file
+if [ -f ".env" ]
+then
+    source .env
+fi
+
+# Read commandline flags:
+#   -h HOST
+#   -u USER
+#   -l LOGFILE
+while getopts h:u:p:l: flag
+do
+    case "${flag}" in
+        h) host=${OPTARG};;
+        u) user=${OPTARG};;
+        p) password=${OPTARG};;
+        l) logfile=${OPTARG};;
+    esac
+done
 
 read -n1 -p "Should we remove unneccessary packages? y/N " res
 if [ $res == "y" ]
 then
     echo "Removing packages..."
     echo
-    wget "https://raw.githubusercontent.com/MarcoWel/bashutils/master/cleanpi.sh" -O - | bash
+    #wget "https://raw.githubusercontent.com/MarcoWel/bashutils/master/cleanpi.sh" -O - | bash
     echo
 fi
 
