@@ -37,6 +37,33 @@ done
 echo "Host: $host"
 echo "User: $user"
 
+if [[ -d "$HOME/bashutils" ]]
+then
+    echo
+    echo "Removing old bashutils..."
+    echo
+    rm -rf "$HOME/bashutils"
+fi
+
+echo
+echo "Downloading repo..."
+echo
+git clone "https://github.com/MarcoWel/bashutils.git" "$HOME/bashutils"
+#curl -s "https://raw.githubusercontent.com/MarcoWel/bashutils/master/rdp.sh" -o "$HOME/bashutils/rdp.sh"
+#chmod u+x "$HOME/bashutils/rdp.sh"
+
+echo
+echo "Creating .env file..."
+cat <<EOF > "$HOME/bashutils/.env"
+host=$host
+user=$user
+password=$password
+resolution=$resolution
+bitdepth=$bitdepth
+logfile=$logfile
+EOF
+#cat "$HOME/bashutils/.env"
+
 echo
 read -p "Should we remove unneccessary packages? y/N " res
 echo
@@ -44,7 +71,7 @@ if [[ $res == "y" ]]
 then
     echo "Removing packages..."
     echo
-    curl -s "https://raw.githubusercontent.com/MarcoWel/bashutils/master/cleanpi.sh" | bash
+    $HOME/bashutils/cleanpi.sh
     echo
 fi
 
@@ -87,33 +114,6 @@ echo "Installing packages..."
 echo
 sudo apt install raspberrypi-ui-mods freerdp2-x11 moreutils
 
-
-if [[ ! -d "$HOME/bashutils" ]]
-then
-    echo
-    echo "Removing old bashutils..."
-    echo
-    rm -rf "$HOME/bashutils"
-fi
-
-echo
-echo "Downloading repo..."
-echo
-git clone "https://github.com/MarcoWel/bashutils.git" "$HOME/bashutils"
-#curl -s "https://raw.githubusercontent.com/MarcoWel/bashutils/master/rdp.sh" -o "$HOME/bashutils/rdp.sh"
-#chmod u+x "$HOME/bashutils/rdp.sh"
-
-echo
-echo "Creating .env file..."
-cat <<EOF > "$HOME/bashutils/.env"
-host=$host
-user=$user
-password=$password
-resolution=$resolution
-bitdepth=$bitdepth
-logfile=$logfile
-EOF
-#cat "$HOME/bashutils/.env"
 
 echo
 echo "Creating desktop shortcuts..."
