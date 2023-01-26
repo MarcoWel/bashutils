@@ -129,7 +129,7 @@ Type=Application
 Name=Connect with User
 Type=Application
 Path=~/bashutils
-Exec=bash ~/bashutils/rdp.sh -u
+Exec=bash ~/bashutils/rdp.sh -u ""
 Terminal=true
 Icon=system-users-symbolic
 EOF
