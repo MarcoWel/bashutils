@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Usage:
+# wget https://raw.githubusercontent.com/MarcoWel/bashutils/master/install.sh -O - | sh
+
 echo "INSTALLING BASHTOOLS"
 echo
 
@@ -28,7 +31,7 @@ do
     esac
 done
 
-read -n1 -p "Should we remove unneccessary packages? y/N " res
+read -p "Should we remove unneccessary packages? y/N " -n1 res
 if [ $res == "y" ]
 then
     echo "Removing packages..."
@@ -39,7 +42,7 @@ fi
 
 uname -a
 echo
-read -n1 -p "Should we perform a kernel update now (rpi-update)? y/N " res
+read -p "Should we perform a kernel update now (rpi-update)? y/N " -n1 res
 if [ $res == "y" ]
 then
     echo "Performing kernel update..."
@@ -54,7 +57,7 @@ echo "      - sudo nano /etc/apt/sources.list"
 echo "      - Modify version name (replace (e.g. strech with bullseye)"
 echo "      - Save and close with STRG+X"
 echo
-read -n1 -p "Should we perform a system update now (apt full-upgrade)? y/N " res
+read -p "Should we perform a system update now (apt full-upgrade)? y/N " -n1 res
 if [ $res == "y" ]
 then
     echo "Performing system update..."
@@ -92,7 +95,7 @@ fi
 echo
 echo "Creating desktop shortcuts"
 
-cat <<EOF > ~/Desktop/Connect.desktop
+cat <<EOF > "~/Desktop/Connect.desktop"
 [Desktop Entry]
 Type=Application
 Name=Connect
@@ -103,7 +106,7 @@ Terminal=true
 Icon=system-users-symbolic
 EOF
 
-cat <<EOF > ~/Desktop/Connect with User.desktop
+cat <<EOF > "~/Desktop/Connect with User.desktop"
 [Desktop Entry]
 Type=Application
 Name=Connect with User
