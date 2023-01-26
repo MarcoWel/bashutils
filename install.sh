@@ -41,7 +41,6 @@ if [[ -d "$HOME/bashutils" ]]
 then
     echo
     echo "Removing old bashutils..."
-    echo
     rm -rf "$HOME/bashutils"
 fi
 
