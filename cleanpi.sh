@@ -34,5 +34,8 @@ sudo apt remove --purge libx11-* -y
 sudo apt autoremove -y
 sudo apt clean
 
+echo -e "\nLargest packages remaining:"
+dpkg-query -W -f='${Installed-Size;8} ${Package}\n' | sort -nr | head -10
+
 echo -e "\n ${Bold}${Blue}   disk space used after removal ${Black}${Normal}"
 df -h
