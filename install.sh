@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Usage:
-# wget https://raw.githubusercontent.com/MarcoWel/bashutils/master/install.sh -O - | bash
+# wget "https://raw.githubusercontent.com/MarcoWel/bashutils/master/install.sh" -O - | bash
 
 echo "INSTALLING BASHTOOLS"
 echo
@@ -36,7 +36,7 @@ if [ $res == "y" ]
 then
     echo "Removing packages..."
     echo
-    wget https://raw.githubusercontent.com/MarcoWel/bashutils/master/cleanpi.sh -O - | bash
+    wget "https://raw.githubusercontent.com/MarcoWel/bashutils/master/cleanpi.sh" -O - | bash
     echo
 fi
 
@@ -73,10 +73,17 @@ fi
 echo
 echo "Installing prerequesites..."
 echo
+sudo apt install raspberrypi-ui-mods freerdp2-x11 moreutils
 
-sudo apt install freerdp2-x11 moreutils
+mkdir "~/bashutils"
 
-if [ ! -f .env ]
+echo
+echo "Downloading rdp.sh..."
+echo
+wget "https://raw.githubusercontent.com/MarcoWel/bashutils/master/rdp.sh" -O "~/bashutils/rdp.sh"
+chmod u+x "~/bashutils/rdp.sh"
+
+if [ ! -f "~/bashutils/.env" ]
 then
     echo
     echo "Creating default .env file"
@@ -94,28 +101,30 @@ fi
 
 echo
 echo "Creating desktop shortcuts"
-
+echo
 cat <<EOF > "~/Desktop/Connect.desktop"
 [Desktop Entry]
 Type=Application
 Name=Connect
 Type=Application
-Path=/home/pi
+Path=~/bashutils/
 Exec=bash ~/bashutils/rdp.sh
 Terminal=true
 Icon=system-users-symbolic
 EOF
+chmod u+x "~/Desktop/Connect.desktop"
 
 cat <<EOF > "~/Desktop/Connect with User.desktop"
 [Desktop Entry]
 Type=Application
 Name=Connect with User
 Type=Application
-Path=/home/pi
+Path=~/bashutils/
 Exec=bash ~/bashutils/rdp.sh -u
 Terminal=true
 Icon=system-users-symbolic
 EOF
+chmod u+x "~/Desktop/Connect with User.desktop"
 
 echo
 echo "Done!"
