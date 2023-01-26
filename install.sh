@@ -34,7 +34,7 @@ do
     esac
 done
 
-read -n1 -p "Should we remove unneccessary packages? y/N " res
+#read -n1 -p "Should we remove unneccessary packages? y/N " res
 if [ $res == "y" ]
 then
     echo "Removing packages..."
