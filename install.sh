@@ -6,36 +6,10 @@
 echo "INSTALLING BASHTOOLS"
 echo
 
-# Set defaults
-host=
-user=
-password=
-resolution=
-bitdepth=
-logfile=
 
-# Overwrite defaults from .env file
-if [ -f ".env" ]
-then
-    source .env
-fi
-
-# Read commandline flags:
-#   -h HOST
-#   -u USER
-#   -l LOGFILE
-while getopts h:u:p:l: flag
-do
-    case "${flag}" in
-        h) host=${OPTARG};;
-        u) user=${OPTARG};;
-        p) password=${OPTARG};;
-        l) logfile=${OPTARG};;
-    esac
-done
 
 read -n1 -p "Should we remove unneccessary packages? y/N " res
-if [ res == "y" ]
+if [ $res == "y" ]
 then
     echo "Removing packages..."
     echo
@@ -46,7 +20,7 @@ fi
 uname -a
 echo
 read -n1 -p "Should we perform a kernel update now (rpi-update)? y/N " res
-if [ res == "y" ]
+if [ $res == "y" ]
 then
     echo "Performing kernel update..."
     echo
@@ -61,7 +35,7 @@ echo "      - Modify version name (replace (e.g. strech with bullseye)"
 echo "      - Save and close with STRG+X"
 echo
 read -n1 -p "Should we perform a system update now (apt full-upgrade)? y/N " res
-if [ res == "y" ]
+if [ $res == "y" ]
 then
     echo "Performing system update..."
     echo
