@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Usage:
-# wget "https://raw.githubusercontent.com/MarcoWel/bashutils/master/cleanpi.sh" -O - | bash
+# curl -s "https://raw.githubusercontent.com/MarcoWel/bashutils/master/cleanpi.sh" | bash
 
 # List of all packages by size (be sure to check quotes are correct):
 # dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -nr
