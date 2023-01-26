@@ -87,19 +87,19 @@ echo "Installing packages..."
 echo
 sudo apt install raspberrypi-ui-mods freerdp2-x11 moreutils
 
+
+if [[ ! -d "$HOME/bashutils" ]]
+then
+    echo
+    echo "Removing old bashutils..."
+    echo
+    rm -rf "$HOME/bashutils"
+fi
+
 echo
 echo "Downloading repo..."
 echo
-if [[ ! -d "$HOME/bashutils" ]]
-then
-    git clone "https://github.com/MarcoWel/bashutils.git" "$HOME/bashutils"
-    #mkdir "$HOME/bashutils"
-else
-    cd "$HOME/bashutils"
-    git fetch origin master
-    git reset --hard origin/master
-fi
-
+git clone "https://github.com/MarcoWel/bashutils.git" "$HOME/bashutils"
 #curl -s "https://raw.githubusercontent.com/MarcoWel/bashutils/master/rdp.sh" -o "$HOME/bashutils/rdp.sh"
 #chmod u+x "$HOME/bashutils/rdp.sh"
 
