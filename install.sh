@@ -38,7 +38,7 @@ echo "Host: $host"
 echo "User: $user"
 
 echo
-read -n1 -p "Should we remove unneccessary packages? y/N " res
+read -p "Should we remove unneccessary packages? y/N " res
 echo
 if [ $res = "y" ]
 then
@@ -51,7 +51,7 @@ fi
 echo
 uname -a
 echo
-read -n1 -p "Should we perform a kernel update now (rpi-update)? y/N " res
+read -p "Should we perform a kernel update now (rpi-update)? y/N " res
 echo
 if [ $res = "y" ]
 then
@@ -67,7 +67,7 @@ echo "      - sudo nano /etc/apt/sources.list"
 echo "      - Modify version name (replace (e.g. strech with bullseye)"
 echo "      - Save and close with STRG+X"
 echo
-read -n1 -p "Should we perform a system update now (apt full-upgrade)? y/N " res
+read -p "Should we perform a system update now (apt full-upgrade)? y/N " res
 echo
 if [ $res = "y" ]
 then
