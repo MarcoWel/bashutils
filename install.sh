@@ -3,7 +3,7 @@
 # Usage:
 # bash <(curl -s "https://raw.githubusercontent.com/MarcoWel/bashutils/master/install.sh") -h "MYHOST" -u "MYUSER"
 
-echo "INSTALLING BASHTOOLS"
+echo "INSTALLING BASHUTILS"
 echo
 
 # Set defaults
@@ -69,8 +69,8 @@ cat <<EOF > "$HOME/Desktop/Connect.desktop"
 Type=Application
 Name=Connect
 Type=Application
-Path=~/bashutils
-Exec=bash ~/bashutils/rdp.sh
+Path=bashutils
+Exec=bash bashutils/rdp.sh
 Terminal=true
 Icon=system-users-symbolic
 EOF
@@ -81,8 +81,8 @@ cat <<EOF > "$HOME/Desktop/Connect with User.desktop"
 Type=Application
 Name=Connect with User
 Type=Application
-Path=~/bashutils
-Exec=bash ~/bashutils/rdp.sh -u ""
+Path=bashutils
+Exec=bash bashutils/rdp.sh -u ""
 Terminal=true
 Icon=system-users-symbolic
 EOF
