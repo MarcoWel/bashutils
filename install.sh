@@ -10,9 +10,9 @@ echo
 host=
 user=
 password=
-resolution=
-bitdepth=
-logfile=
+resolution="1920x1080"
+bitdepth="16"
+logfile="$HOME/rdplog.txt"
 
 # Read commandline flags:
 #   -h HOST

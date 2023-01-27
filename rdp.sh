@@ -10,7 +10,7 @@ user=
 password=
 resolution="1920x1080"
 bitdepth="16"
-logfile=~/rdplog.txt
+logfile="$HOME/rdplog.txt"
 
 # Overwrite defaults from .env file
 if [ -f "$HOME/rdp.env" ]
