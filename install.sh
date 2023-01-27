@@ -14,12 +14,6 @@ resolution=
 bitdepth=
 logfile=
 
-# Overwrite defaults from .env file
-if [[ -f ".env" ]]
-then
-    source .env
-fi
-
 # Read commandline flags:
 #   -h HOST
 #   -u USER
@@ -52,8 +46,8 @@ git clone "https://github.com/MarcoWel/bashutils.git" "$HOME/bashutils"
 #chmod u+x "$HOME/bashutils/rdp.sh"
 
 echo
-echo "Creating .env file..."
-cat <<EOF > "$HOME/bashutils/.env"
+echo "Creating rdp.env file..."
+cat <<EOF > "$HOME/rdp.env"
 host=$host
 user=$user
 password=$password
@@ -69,7 +63,6 @@ cat <<EOF > "$HOME/Desktop/Connect.desktop"
 Type=Application
 Name=Connect
 Type=Application
-Path=bashutils
 Exec=bash bashutils/rdp.sh
 Terminal=true
 Icon=system-users-symbolic
@@ -81,7 +74,6 @@ cat <<EOF > "$HOME/Desktop/Connect with User.desktop"
 Type=Application
 Name=Connect with User
 Type=Application
-Path=bashutils
 Exec=bash bashutils/rdp.sh -u ""
 Terminal=true
 Icon=system-users-symbolic

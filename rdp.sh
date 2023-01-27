@@ -13,9 +13,9 @@ bitdepth="16"
 logfile=~/rdplog.txt
 
 # Overwrite defaults from .env file
-if [ -f ".env" ]
+if [ -f "$HOME/rdp.env" ]
 then
-    source .env
+    source "$HOME/rdp.env"
 fi
 
 # Read commandline flags:
