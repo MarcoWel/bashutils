@@ -8,6 +8,7 @@ echo
 
 # Set defaults
 host=
+domain=
 user=
 password=
 resolution="1920x1080"
@@ -17,19 +18,23 @@ logfile="$HOME/rdplog.txt"
 # Read commandline flags:
 #   -h HOST
 #   -u USER
+#   -p PASSWORD
+#   -d DOMAIN
 #   -l LOGFILE
-while getopts h:u:p:l: flag
+while getopts h:d:u:p:l: flag
 do
     case "${flag}" in
         h) host=${OPTARG};;
+        d) domain=${OPTARG};;
         u) user=${OPTARG};;
         p) password=${OPTARG};;
         l) logfile=${OPTARG};;
     esac
 done
 
-echo "Host: $host"
-echo "User: $user"
+echo "Domain: $domain"
+echo "Host:   $host"
+echo "User:   $user"
 
 if [[ -d "$HOME/bashutils" ]]
 then
@@ -49,6 +54,7 @@ echo
 echo "Creating rdp.env file..."
 cat <<EOF > "$HOME/rdp.env"
 host=$host
+domain=$domain
 user=$user
 password=$password
 resolution=$resolution

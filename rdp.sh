@@ -6,6 +6,7 @@
 
 # Set defaults
 host=
+domain=
 user=
 password=
 resolution="1920x1080"
@@ -20,12 +21,14 @@ fi
 
 # Read commandline flags:
 #   -h HOST
+#   -d DOMAIN
 #   -u USER
 #   -l LOGFILE
-while getopts h:u:p:l: flag
+while getopts h:d:u:p:l: flag
 do
     case "${flag}" in
         h) host=${OPTARG};;
+        d) domain=${OPTARG};;
         u) user=${OPTARG};;
         p) password=${OPTARG};;
         l) logfile=${OPTARG};;
@@ -60,6 +63,14 @@ else
     fi
 fi
 
+if [ -z "$domain" ]
+then
+    echo -n "Enter Domain > "
+    read host
+else
+    echo    "Domain     > "$domain
+fi
+
 if [ -z "$user" ]
 then
     echo -n "Enter User > "
@@ -81,7 +92,7 @@ echo
 echo "-- INITIATING RDP SESSION FOR $user --" | ts '[%F %T]' | tee -a $logfile
 set -o pipefail
 
-xfreerdp /size:"$resolution" /bpp:"$bitdepth" /f /u:"$user" /p:"$password" /v:"$host" \
+xfreerdp /size:"$resolution" /bpp:"$bitdepth" /f /u:"$user" /d:"$domain" /p:"$password" /v:"$host" \
          /sound:sys:alsa,latency:100 /gdi:hw /network:broadband /cert-ignore \
          -clipboard +gfx-thin-client +auto-reconnect +fonts +multitouch \
          2>&1 | grep -v 'recursive lock from' | ts '[%F %T]' | tee -a $logfile
