@@ -17,9 +17,9 @@ logfile="$HOME/rdplog.txt"
 
 # Read commandline flags:
 #   -h HOST
+#   -d DOMAIN
 #   -u USER
 #   -p PASSWORD
-#   -d DOMAIN
 #   -l LOGFILE
 while getopts h:d:u:p:l: flag
 do

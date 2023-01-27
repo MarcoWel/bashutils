@@ -74,7 +74,7 @@ fi
 if [ -z "$user" ]
 then
     echo -n "Enter User > "
-    read host
+    read user
 else
     echo    "User       > "$user
 fi
